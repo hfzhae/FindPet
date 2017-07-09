@@ -583,9 +583,9 @@ function FindPetFn(page, sendType) {
     $('#' + page).find('.page__bd').append(a);
 
     var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles");
+        $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+        $uploaderInput = $("#uploaderInput"),
+        $uploaderFiles = $("#uploaderFiles");
 
     for (var i in fnidpetArr.img) {
         $uploaderFiles.append($(tmpl.replace('#url#', fnidpetArr.img[i].src)));
@@ -773,8 +773,8 @@ function FindPetFn(page, sendType) {
         }, 200);
 
         var map = new BMap.Map("allmap"),
-                    point = new BMap.Point(fnidpetArr.placepoint.split(',')[0], fnidpetArr.placepoint.split(',')[1]),
-                    geolocationControl = new BMap.GeolocationControl();
+            point = new BMap.Point(fnidpetArr.placepoint.split(',')[0], fnidpetArr.placepoint.split(',')[1]),
+            geolocationControl = new BMap.GeolocationControl();
 
         geolocationControl.addEventListener("locationSuccess", function(e) {
             // 定位成功事件
