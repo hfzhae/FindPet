@@ -1,0 +1,63 @@
+#debug on
+Dim httpd,Service
+
+set Service = Shell.Service
+
+Service.RunService "NBWeb", "NetBox Web Server", "NetBox Http Server Sample"
+
+
+'---------------------- Service Event ---------------------
+
+Sub OnServiceStart()
+    Set httpd = CreateObject("NetBox.HttpServer")
+
+    If httpd.Create("", 80) = 0 Then
+        Set host = httpd.AddHost("", "/wwwroot")
+	disposeTaskMenu()
+        host.EnableScript = true
+        host.AddDefault "index.html"
+        host.AddDefault "default.box"
+        host.AddDefault "default.asp"
+        host.AddDefault "default.htm"
+
+        httpd.Start
+    else
+        Shell.Quit 0
+    end if
+End Sub
+
+Sub OnServiceStop()
+    httpd.Close
+End Sub
+
+Sub OnServicePause()
+    httpd.Stop
+End Sub
+
+Sub OnServiceResume()
+    httpd.Start
+End Sub
+
+function disposeTaskMenu()
+	'Service.AppendCommand 0, "选项设置"
+	'Service.AppendCommand -1
+	Service.AppendCommand 242, "启动"
+	Service.AppendCommand 240, "暂停"
+	'Service.AppendCommand 243, "开始"
+end function
+
+
+function OnServiceCommand(msg)
+	select case msg
+		case 0:
+			opencontrol()
+		case 240:'暂停
+			httpd.Stop
+		case 241:'关闭
+			OnServiceStop()
+		case 242:'重启
+			httpd.Start
+		case 243:'开始
+			OnServiceStart()
+	end select
+end function

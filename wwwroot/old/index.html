@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AcuHerb System</title>
+    <link rel="stylesheet" href="css/jquery.mobile.css" />
+    <link rel="stylesheet" href="css/jqm-docs.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile.js"></script>
+</head>
+<body>
+    <div data-role="page" class="type-interior">
+        <!--<div data-role="panel" id="mypanel" style="background-color:#666;">
+        </div>-->
+        <div data-role="header" data-theme="c" data-position="fixed">
+            <a href="#" data-icon="home" onclick="setHome()" >Home</a>
+            <h1>AcuHerb System</h1>
+            <a href="#" data-icon="search" onclick="serachAcu();">Search</a>
+        </div>
+        <div data-role="content">
+            <div class="content-primary">
+                <div id="content" style="margin:0;">
+                </div>
+                <div id="isAD"></div>
+            </div>
+            <div class="content-secondary">
+                <div id="divMenu"></div>
+            </div>
+        </div>
+        <div data-role="footer" />
+    </div>
+	<div data-role="popup" id="popupInfo" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all">
+		<div data-role="header" class="ui-corner-top">
+			<h1 id="popupInfotitle"></h1>
+		</div>
+		<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">
+		    <div id="popupInfotext"></div>
+		    <div id="popupInfoFX"></div>
+		    <div id="popupInfobtn"></div>
+		</div>
+	</div>
+	<div data-role="popup" id="PointsInfo" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all">
+		<div data-role="header" class="ui-corner-top">
+			<h1 id="PointsInfoTitle"></h1>
+		</div>
+		<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">
+		    <div id="PointsInfoText"></div>
+		</div>
+	</div>
+</body>
+<script src="js/AcuHerb.js"></script>
+<script src="js/data.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var img = $("<img src='images/ad20130123.png'>")
+        imgdiv = $("<div>")
+            .css({ "padding": "0px", "cursor": "pointer", "margin-top": "10px", "margin-bottom": "10px" })
+            .append(img)
+            .appendTo(isAD);
+        $(isAD).css({ "text-align": "center" });
+        var w = $(img).width(),
+            iw = w,
+            ws = $(window).width() >= 650 ? ($(img).parent().parent().width() * .8) : $(window).width(),
+            n = 0;
+        if (w >= (ws - n) || w == 0 || w == null || w == undefined) {
+            if ((ws - n) <= 350) {
+                $(img).css("width", ws - n);
+            } else {
+                $(img).css("width", 350);
+            }
+        }
+        $(window).resize(function(e) {
+            var ws = $(window).width() > 650 ? ($(img).parent().parent().width() * .8) : $(window).width(),
+                n = 0;
+            if (iw >= (ws - n) || iw == 0) {
+                if ((ws - n) <= 350) {
+                    $(img).css("width", ws - n);
+                } else {
+                    $(img).css("width", 350);
+                }
+            }
+        });
+        var timestampNotice = Date.parse(new Date());
+        $.get("http://www.zydsoft.com/Webload/userlogon.asp", { v: "acuherbEng", t: timestampNotice },
+                function(data) {
+                    try {
+                        if (islogo) {
+                            $(img).attr({ "src": islogo }).click(function() { if (isurl) window.open(isurl); });
+                        }
+                    } catch (err) {
+                    }
+                }, "script"
+            );
+    });
+
+    var vMenu = "<ul data-role='listview'>";
+    for (var key in acuData) vMenu += "<li data-theme='" + sysTheme + "'><a onclick=setMenu('" + replaceEx(key," ","_") + "')>" + key + "</a></li>";
+    vMenu += "<li data-theme='a' data-icon='info'><a href='about.html' data-ajax='false'>About AcuHerb</a></li>";
+    vMenu += "</ul>";
+    $("#divMenu").html(vMenu).listview().listview("refresh");
+    
+    function openPanel() {
+        $("#mypanel").panel("open", optionsHash);
+    }
+    function setHome() {
+        $("#content").html("");
+        $("#divMenu").find(".ui-btn-active").removeClass("ui-btn-active");
+    }
+
+</script>
+</html>
