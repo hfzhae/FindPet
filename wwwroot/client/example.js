@@ -1,6 +1,7 @@
 /**
  * Created by jf on 2015/9/11.
  * Modified by bear on 2016/9/7.
+ * zz by 2017/7/10
  */
 $(function() {
     var pageManager = {
