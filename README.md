@@ -15,7 +15,3 @@
 > Netbox  
 > WeUI  
 > MSSql  
-
-## 参与贡献
- 
-> 如果有 `Bug反馈` 或 `功能建议`，请创建 [Issue](https://github.com/hfzhae/findpet/issues)，感谢你的参与和贡献。
