@@ -12,7 +12,6 @@
 
 ## 开发环境
 
-> WeiUI  
 > Netbox  
 > MSSql  
 
