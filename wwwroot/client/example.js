@@ -310,7 +310,15 @@ $(function() {
             getData('menuAll', function(data) {
                 if (data.item) {
                     storage.menuArr = JSON.stringify(data.item);
+                    storage.varietiesArr = JSON.stringify(data.varieties);
+                    storage.genderArr = JSON.stringify(data.gender);
+                    storage.sterilizationArr = JSON.stringify(data.sterilization);
+                    
                     menuArr = JSON.parse(storage.menuArr);
+                    varietiesArr = JSON.parse(storage.varietiesArr);
+                    genderArr = JSON.parse(storage.genderArr);
+                    sterilizationArr = JSON.parse(storage.sterilizationArr);
+                    
                     setMenuPage();
                     init();
                     l.hide();
@@ -318,6 +326,10 @@ $(function() {
             }, {}, function() { });
         } else {
             menuArr = JSON.parse(storage.menuArr);
+            varietiesArr = JSON.parse(storage.varietiesArr);
+            genderArr = JSON.parse(storage.genderArr);
+            sterilizationArr = JSON.parse(storage.sterilizationArr);
+            
             setMenuPage();
             init();
         }

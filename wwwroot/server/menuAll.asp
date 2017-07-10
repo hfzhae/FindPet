@@ -37,5 +37,15 @@ s = request("callback")
         '<%=escape("雪纳瑞") %>',
         '<%=escape("串串") %>',
         '<%=escape("其他") %>'
+    ],
+    gender:[
+        '<%=escape("公") %>',
+        '<%=escape("母") %>',
+        '<%=escape("不详") %>',
+    ],
+    sterilization:[
+        '<%=escape("未节育") %>',
+        '<%=escape("已节育") %>',
+        '<%=escape("不详") %>',
     ]
 })

@@ -3,6 +3,9 @@
 */
 var loadPageMax = 0, //最大加载次数
     menuArr = [], //菜单结构
+    varietiesArr = [], //品种结构
+    genderArr = [], //性别结构
+    sterilizationArr = [], //绝育结构
     amountSum = 0,
     intSum = 0,
     phone = '',
@@ -529,41 +532,27 @@ function FindPetFn(page, sendType) {
 
     a += '<div class="weui-cell weui-cell_select weui-cell_select-after"><div class="weui-cell__hd"><label for="fp_Varieties" class="weui-label">品种</label></div><div class="weui-cell__bd"><select class="weui-select" id="fp_Varieties">';
     a += '<option value=""></option>';
-    a += '<option value="贵宾（泰迪）/比熊">贵宾（泰迪）/比熊</option>';
-    a += '<option value="金毛">金毛</option>';
-    a += '<option value="拉布拉多">拉布拉多</option>';
-    a += '<option value="哈士奇">哈士奇</option>';
-    a += '<option value="边境牧羊犬">边境牧羊犬</option>';
-    a += '<option value="萨摩耶">萨摩耶</option>';
-    a += '<option value="柴犬">柴犬</option>';
-    a += '<option value="阿拉斯加雪橇犬">阿拉斯加雪橇犬</option>';
-    a += '<option value="吉娃娃">吉娃娃</option>';
-    a += '<option value="博美">博美</option>';
-    a += '<option value="法国斗牛犬">法国斗牛犬</option>';
-    a += '<option value="比格">比格</option>';
-    a += '<option value="约克夏">约克夏</option>';
-    a += '<option value="柯基">柯基</option>';
-    a += '<option value="雪纳瑞">雪纳瑞</option>';
-    a += '<option value="串串">串串</option>';
-    a += '<option value="其他">其他</option>';
+    for (var each in varietiesArr) {
+        a += '<option value="' + unescape(varietiesArr[each]) + '">' + unescape(varietiesArr[each]) + '</option>';
+    }
     a += '</select>'
     a += '</div>'
     a += '</div>'
 
     a += '<div class="weui-cell weui-cell_select weui-cell_select-after"><div class="weui-cell__hd"><label for="fp_Gender" class="weui-label">性别</label></div><div class="weui-cell__bd"><select class="weui-select" id="fp_Gender">';
     a += '<option value=""></option>';
-    a += '<option value="公">公</option>';
-    a += '<option value="母">母</option>';
-    a += '<option value="不详">不详</option>';
+    for (var each in genderArr) {
+        a += '<option value="' + unescape(genderArr[each]) + '">' + unescape(genderArr[each]) + '</option>';
+    }
     a += '</select>'
     a += '</div>'
     a += '</div>'
 
     a += '<div class="weui-cell weui-cell_select weui-cell_select-after"><div class="weui-cell__hd"><label for="fp_sterilization" class="weui-label">是否绝育</label></div><div class="weui-cell__bd"><select class="weui-select" id="fp_sterilization">';
     a += '<option value=""></option>';
-    a += '<option value="未节育">未节育</option>';
-    a += '<option value="已节育">已节育</option>';
-    a += '<option value="不详">不详</option>';
+    for (var each in sterilizationArr) {
+        a += '<option value="' + unescape(sterilizationArr[each]) + '">' + unescape(sterilizationArr[each]) + '</option>';
+    }
     a += '</select>'
     a += '</div>'
     a += '</div>'
