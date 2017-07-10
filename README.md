@@ -12,9 +12,9 @@
 
 ## 开发环境
 
-> Netbox  
-> WeUI
-> MSSql  
+> Netbox  
+> WeUI  
+> MSSql  
 
 ## 参与贡献
  
