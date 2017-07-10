@@ -1,7 +1,7 @@
 ﻿/**
 * dev by zz on 2017/3/8.
 */
-var loadPageMax = 0,  //最大加载次数
+var loadPageMax = 0, //最大加载次数
     menuArr = [], //菜单结构
     amountSum = 0,
     intSum = 0,
@@ -10,7 +10,7 @@ var loadPageMax = 0,  //最大加载次数
     isBackHome = 0,  //是否自动返回首页标示0为不返回
     acuArr = [],
     pageArr = [ //页面数组
-            {
+        {
             id: 'ishome',
             title: '寻宠宝',
             desc: '专业找猫寻狗宠物侦探'
