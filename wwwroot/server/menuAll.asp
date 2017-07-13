@@ -1,6 +1,26 @@
+<!-- #include file="public.asp" -->
 <% 
-dim s, strSale
+dim s, strSale, varieties
 s = request("callback")
+
+varieties = getVarieties()
+
+function getVarieties()
+    dim rs, sSQL, s
+    s = ""
+    sSQL = "select title from varieties where isdeleted=0 order by sort desc, id"
+    set rs = CreateObject("adodb.recordset")
+    rs.CursorLocation = 3
+    rs.Open sSQL, Conn, 0, 1
+    if not rs.eof then
+        do while not rs.eof
+            s = s & "'" & escape(rs("title").value) & "',"
+        rs.movenext
+        loop
+        s = left(s, len(s) - 1)
+    end if
+    getVarieties = s
+end function
 %>
 <%=s%>({
     phone:'',
@@ -19,27 +39,7 @@ s = request("callback")
         desc:'<%=escape("感谢你的参与，请如实填写信息，详实的信息对于寻找宠物起着至关重要的作用！") %>',
         item:[]
     }],
-    varieties:[
-        '<%=escape("贵宾（泰迪）/比熊") %>',
-        '<%=escape("金毛") %>',
-        '<%=escape("拉布拉多") %>',
-        '<%=escape("哈士奇") %>',
-        '<%=escape("边境牧羊犬") %>',
-        '<%=escape("萨摩耶") %>',
-        '<%=escape("柴犬") %>',
-        '<%=escape("阿拉斯加雪橇犬") %>',
-        '<%=escape("吉娃娃") %>',
-        '<%=escape("博美") %>',
-        '<%=escape("法国斗牛犬") %>',
-        '<%=escape("比格") %>',
-        '<%=escape("约克夏") %>',
-        '<%=escape("柯基") %>',
-        '<%=escape("雪纳瑞") %>',
-        '<%=escape("串串") %>',
-        '<%=escape("小鹿犬") %>',
-        '<%=escape("秋田犬") %>',
-        '<%=escape("其他") %>'
-    ],
+    varieties:[<%=varieties %>],
     gender:[
         '<%=escape("公") %>',
         '<%=escape("母") %>',
