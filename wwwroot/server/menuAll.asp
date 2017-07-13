@@ -8,7 +8,7 @@ varieties = getVarieties()
 function getVarieties()
     dim rs, sSQL, s
     s = ""
-    sSQL = "select title from varieties where isdeleted=0 order by sort desc, id"
+    sSQL = "select title from Info where isdeleted=0 and infotype=2002 order by sort desc, id"
     set rs = CreateObject("adodb.recordset")
     rs.CursorLocation = 3
     rs.Open sSQL, Conn, 0, 1
