@@ -526,7 +526,7 @@ function FindPetFn(page, sendType) {
     fnidpetArr.placepoint = '';
     $('#' + page).find('.weui-cells').addClass('weui-cells_form');
 
-    a = '<div class="weui-cell weui-cell_access"><div class="weui-cell__hd"><label for="fp_timeInput" class="weui-label">时间</label></div><div class="weui-cell__bd" style="width:50px;"><input class="weui-input" type="datetime-local" value="" id="fp_timeInput" placeholder=""/></div><div class="weui-cell__ft"></div></div>';
+    a = '<div class="weui-cell weui-cell_access"><div class="weui-cell__hd"><label for="fp_timeInput" class="weui-label">日期</label></div><div class="weui-cell__bd" style="width:50px;"><input class="weui-input" type="date" value="" id="fp_timeInput" placeholder=""/></div><div class="weui-cell__ft"></div></div>';
 
     a += '<div class="weui-cell weui-cell_access"><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="走失地点（格式：省,市,区,街道,门牌号）" id="place_Text"></div><div class="weui-cell__ft"><button name="place" class="weui-vcode-btn">地图</button></div></div>';
 
@@ -583,6 +583,11 @@ function FindPetFn(page, sendType) {
 
     $("#" + page).find('a[name=findpetSubmit]').on('click', function() {
         fnidpetArr.placeText = $('#place_Text').val();
+        if (fp_timeInput.value == '') {
+            $.toast('确定时间', 'err', 2000);
+            return;
+        }
+
         if (fnidpetArr.placeText == '') {
             $.toast('确定走失地点', 'err', 2000);
             return;
@@ -610,11 +615,6 @@ function FindPetFn(page, sendType) {
         }
         if (fp_phone.value == '') {
             $.toast('录入电话', 'err', 2000);
-            return;
-        }
-
-        if (fp_timeInput.value == '') {
-            $.toast('确定走失时间', 'err', 2000);
             return;
         }
 
@@ -744,7 +744,7 @@ function FindPetFn(page, sendType) {
         } //for end
     }
 
-    fp_timeInput.value = new Date().Format("yyyy-MM-ddThh:mm:ss");
+    fp_timeInput.value = new Date().Format("yyyy-MM-dd");
 
     $('#' + page).find("button[name=place]").on('click', function() {
         var h = ($('#container').height() - 120), w = ($('#container').width() - 40);
