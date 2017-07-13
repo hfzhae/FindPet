@@ -36,6 +36,8 @@ s = request("callback")
         '<%=escape("¿Â»ù") %>',
         '<%=escape("Ñ©ÄÉÈð") %>',
         '<%=escape("´®´®") %>',
+        '<%=escape("Ð¡Â¹È®") %>',
+        '<%=escape("ÇïÌïÈ®") %>',
         '<%=escape("ÆäËû") %>'
     ],
     gender:[
