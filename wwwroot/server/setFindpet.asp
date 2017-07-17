@@ -1,6 +1,8 @@
 <!-- #include file="public.asp" -->
+<!-- #include file="findpet.asp" -->
+
 <% 
-dim s, timeInput, Varieties, Gender, sterilization, color, name, phone, memo, imgText, placeText, placepoint, n, isRe, sendType
+dim s, timeInput, Varieties, Gender, sterilization, color, name, phone, memo, imgText, placeText, placepoint, n, isRe, sendType, isFind, fp
 s = SQLInputParam(request("callback"))
 timeInput = replace(SQLInputParam(request("timeInput")), "T", " ")
 Varieties = SQLInputParam(unescape(request("Varieties")))
@@ -20,10 +22,15 @@ placepoint = SQLInputParam(unescape(request("placepoint")))
 
 isRe = getRe(phone)
 
+set fp = new FindpetObj
+fp.init(conn)
+
+isFind = fp.findpet(timeInput, Varieties, Gender, color, placeText, placepoint, sendType)
+
 n = 0
 
 on error resume next
-conn.execute "insert into findpet (CreateDate,timeInput,Varieties,Gender,sterilization,color,isname,phone,memo,imgText,placeText,placepoint, isDeleted, state, UpdatDate, isRe, sendType) values ('"&now&"','"&timeInput&"','"&Varieties&"','"&Gender&"','"&sterilization&"','"&color&"','"&name&"','"&phone&"','"&memo&"','"&imgText&"','"&placeText&"','"&placepoint&"', 0, 'Î´ÉóºË', '"&now&"', '"&isRe&"', "&sendType&")", n
+conn.execute "insert into findpet (CreateDate,timeInput,Varieties,Gender,sterilization,color,isname,phone,memo,imgText,placeText,placepoint, isDeleted, state, UpdatDate, isRe, sendType, isFind) values ('"&now&"','"&timeInput&"','"&Varieties&"','"&Gender&"','"&sterilization&"','"&color&"','"&name&"','"&phone&"','"&memo&"','"&imgText&"','"&placeText&"','"&placepoint&"', 0, 'Î´ÉóºË', '"&now&"', '"&isRe&"', "&sendType&", "&isFind&")", n
 on error goto 0
 
 if n > 0 then

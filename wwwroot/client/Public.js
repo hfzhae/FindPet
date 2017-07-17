@@ -526,7 +526,7 @@ function FindPetFn(page, sendType) {
     fnidpetArr.placepoint = '';
     $('#' + page).find('.weui-cells').addClass('weui-cells_form');
 
-    a = '<div class="weui-cell weui-cell_access"><div class="weui-cell__hd"><label for="fp_timeInput" class="weui-label">日期</label></div><div class="weui-cell__bd" style="width:50px;"><input class="weui-input" type="date" value="" id="fp_timeInput" placeholder=""/></div><div class="weui-cell__ft"></div></div>';
+    a = '<div class="weui-cell weui-cell_access"><div class="weui-cell__hd"><label for="fp_timeInput" class="weui-label">时间</label></div><div class="weui-cell__bd" style="width:50px;"><input class="weui-input" type="date" value="" id="fp_timeInput" placeholder=""/></div><div class="weui-cell__ft"></div></div>';
 
     a += '<div class="weui-cell weui-cell_access"><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="走失地点（格式：省,市,区,街道,门牌号）" id="place_Text"></div><div class="weui-cell__ft"><button name="place" class="weui-vcode-btn">地图</button></div></div>';
 
