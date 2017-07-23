@@ -2,7 +2,7 @@
 <!-- #include file="findpet.asp" -->
 
 <% 
-dim s, timeInput, Varieties, Gender, sterilization, color, name, phone, memo, imgText, placeText, placepoint, n, isRe, sendType, isFind, fp
+dim s, timeInput, Varieties, Gender, sterilization, color, name, phone, memo, imgText, placeText, placepoint, n, isRe, sendType, isFind, fp, isfrom
 s = SQLInputParam(request("callback"))
 timeInput = replace(SQLInputParam(request("timeInput")), "T", " ")
 Varieties = SQLInputParam(unescape(request("Varieties")))
@@ -14,6 +14,7 @@ phone = SQLInputParam(request("phone"))
 memo = SQLInputParam(unescape(request("memo")))
 imgText = SQLInputParam(unescape(request("imgText")))
 sendType = ClngEx(request("sendType"))
+isfrom = getFrom(ClngEx(request("isfrom")))
 if len(imgText)>0 then
     imgText = left(imgText, len(imgText) - 1)
 end if
@@ -30,7 +31,7 @@ isFind = fp.findpet(timeInput, Varieties, Gender, color, placeText, placepoint, 
 n = 0
 
 on error resume next
-conn.execute "insert into findpet (CreateDate,timeInput,Varieties,Gender,sterilization,color,isname,phone,memo,imgText,placeText,placepoint, isDeleted, state, UpdatDate, isRe, sendType, isFind) values ('"&now&"','"&timeInput&"','"&Varieties&"','"&Gender&"','"&sterilization&"','"&color&"','"&name&"','"&phone&"','"&memo&"','"&imgText&"','"&placeText&"','"&placepoint&"', 0, 'Î´ÉóºË', '"&now&"', '"&isRe&"', "&sendType&", "&isFind&")", n
+conn.execute "insert into findpet (CreateDate,timeInput,Varieties,Gender,sterilization,color,isname,phone,memo,imgText,placeText,placepoint, isDeleted, state, UpdateDate, isRe, sendType, isFind, isfrom) values ('"&now&"','"&timeInput&"','"&Varieties&"','"&Gender&"','"&sterilization&"','"&color&"','"&name&"','"&phone&"','"&memo&"','"&imgText&"','"&placeText&"','"&placepoint&"', 0, 'Î´ÉóºË', '"&now&"', '"&isRe&"', "&sendType&", "&isFind&", '"&isfrom&"')", n
 on error goto 0
 
 if n > 0 then
@@ -47,5 +48,14 @@ function getRe(phone)
         getRe = rs("id").value
     end if
     
+end function
+
+function getFrom(id)
+    getFrom = "ÆäËû"
+    dim rs
+    set rs = conn.execute("select title from Info where InfoType=2004 and sort="&id)
+    if not rs.eof then
+        getFrom = rs("title").value
+    end if
 end function
 %>

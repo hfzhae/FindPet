@@ -14,19 +14,19 @@ var loadPageMax = 0, //最大加载次数
     acuArr = [],
     pageArr = [ //页面数组
         {
-            id: 'ishome',
-            title: '寻宠宝',
-            desc: '专业找猫寻狗宠物侦探'
-            //desc: 'According to the chief complaints of the patient, please select  the listed diseases in the menu.'
-        }, {
-            id: 'search',
-            title: 'Search',
-            desc: ''
-        }, {
-            id: 'empty',
-            title: 'Not open',
-            desc: ''
-        }
+        id: 'ishome',
+        title: '寻宠宝',
+        desc: '专业找猫寻狗宠物侦探'
+        //desc: 'According to the chief complaints of the patient, please select  the listed diseases in the menu.'
+    }, {
+        id: 'search',
+        title: 'Search',
+        desc: ''
+    }, {
+        id: 'empty',
+        title: 'Not open',
+        desc: ''
+    }
     ];
 
 
@@ -635,6 +635,7 @@ function FindPetFn(page, sendType) {
         fnidpetArr.placeTextES = escape(fnidpetArr.placeText);
         fnidpetArr.imgText = '';
         fnidpetArr.sendType = sendType;
+        fnidpetArr.isfrom = getQueryString("isfrom") ? getQueryString("isfrom") : 0
         for (i in fnidpetArr.img) {
             fnidpetArr.imgText += escape(fnidpetArr.img[i].src) + ',';
         }
