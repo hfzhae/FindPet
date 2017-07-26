@@ -49,6 +49,8 @@ Class FindpetObj
             if UBound(placeArr) = 4 then
                 strWhere = strWhere & " and SUBSTRING(placeText,0,charindex(',',placeText,0)) = '"& placeArr(0) &"'"
                 strWhere = strWhere & " and SUBSTRING(SUBSTRING(placeText,charindex(',',placeText,0)+1,len(placeText)),0,charindex(',',SUBSTRING(placeText,charindex(',',placeText,0)+1,len(placeText)),0)) = '"& placeArr(1) &"'"
+            else
+                exit function
             end if
         end if
                 
