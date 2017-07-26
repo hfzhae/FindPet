@@ -564,7 +564,9 @@ function FindPetFn(page, sendType) {
     a += '<div class="weui-cell"><div class="weui-cell__hd"><label for="fp_isname" class="weui-label">联系人</label></div><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="请输入联系人姓名" id="fp_name"></div></div>';
 
     a += '<div class="weui-cell"><div class="weui-cell__hd"><label for="fp_isphone" class="weui-label">手机号码</label></div><div class="weui-cell__bd"><input class="weui-input" type="tel" placeholder="请输入电话" id="fp_phone"></div></div>';
-
+    if (sendType == 0) {
+        a += '<div class="weui-cell"><div class="weui-cell__hd"><label for="Amount" class="weui-label">赏金</label></div><div class="weui-cell__bd"><input class="weui-input" type="number" placeholder="请输入赏金" id="Amount" value="0" pattern="[0-9]*" ></div></div>';
+    }
     a += '<div class="weui-cell"><div class="weui-cell__bd"><textarea onkeyup="checkLen(this)" class="weui-textarea" placeholder="更多信息（其他特征）" rows="3" id="fp_memo"></textarea><div class="weui-textarea-counter"><span id="areaTextCount">0</span>/200</div></div></div>';
     $('#' + page).find('.weui-cells_form').append(a);
 
@@ -622,8 +624,6 @@ function FindPetFn(page, sendType) {
             return;
         }
 
-
-
         fnidpetArr.timeInput = fp_timeInput.value;
         fnidpetArr.Varieties = escape(fp_Varieties.value);
         fnidpetArr.Gender = escape(fp_Gender.value);
@@ -635,6 +635,7 @@ function FindPetFn(page, sendType) {
         fnidpetArr.placeTextES = escape(fnidpetArr.placeText);
         fnidpetArr.imgText = '';
         fnidpetArr.sendType = sendType;
+        fnidpetArr.amount = Amount.value;
         fnidpetArr.isfrom = getQueryString("isfrom") ? getQueryString("isfrom") : 0
         for (i in fnidpetArr.img) {
             fnidpetArr.imgText += escape(fnidpetArr.img[i].src) + ',';

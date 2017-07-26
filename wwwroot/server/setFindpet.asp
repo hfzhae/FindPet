@@ -2,7 +2,7 @@
 <!-- #include file="findpet.asp" -->
 
 <% 
-dim s, timeInput, Varieties, Gender, sterilization, color, name, phone, memo, imgText, placeText, placepoint, n, isRe, sendType, isFind, fp, isfrom
+dim s, timeInput, Varieties, Gender, sterilization, color, name, phone, memo, imgText, placeText, placepoint, n, isRe, sendType, isFind, fp, isfrom, amount
 s = SQLInputParam(request("callback"))
 timeInput = replace(SQLInputParam(request("timeInput")), "T", " ")
 Varieties = SQLInputParam(unescape(request("Varieties")))
@@ -14,6 +14,7 @@ phone = SQLInputParam(request("phone"))
 memo = SQLInputParam(unescape(request("memo")))
 imgText = SQLInputParam(unescape(request("imgText")))
 sendType = ClngEx(request("sendType"))
+amount = ClngEx(request("amount"))
 isfrom = getFrom(ClngEx(request("isfrom")))
 if len(imgText)>0 then
     imgText = left(imgText, len(imgText) - 1)
@@ -31,7 +32,7 @@ isFind = fp.findpet(timeInput, Varieties, Gender, color, placeText, placepoint, 
 n = 0
 
 on error resume next
-conn.execute "insert into findpet (CreateDate,timeInput,Varieties,Gender,sterilization,color,isname,phone,memo,imgText,placeText,placepoint, isDeleted, state, UpdateDate, isRe, sendType, isFind, isfrom) values ('"&now&"','"&timeInput&"','"&Varieties&"','"&Gender&"','"&sterilization&"','"&color&"','"&name&"','"&phone&"','"&memo&"','"&imgText&"','"&placeText&"','"&placepoint&"', 0, 'Î´ÉóºË', '"&now&"', '"&isRe&"', "&sendType&", "&isFind&", '"&isfrom&"')", n
+conn.execute "insert into findpet (CreateDate,timeInput,Varieties,Gender,sterilization,color,isname,phone,memo,imgText,placeText,placepoint, isDeleted, state, UpdateDate, isRe, sendType, isFind, isfrom, amount) values ('"&now&"','"&timeInput&"','"&Varieties&"','"&Gender&"','"&sterilization&"','"&color&"','"&name&"','"&phone&"','"&memo&"','"&imgText&"','"&placeText&"','"&placepoint&"', 0, 'Î´ÉóºË', '"&now&"', '"&isRe&"', "&sendType&", "&isFind&", '"&isfrom&"', "&amount&")", n
 on error goto 0
 
 if n > 0 then
