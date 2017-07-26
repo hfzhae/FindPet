@@ -749,10 +749,10 @@ function FindPetFn(page, sendType) {
 
     $('#' + page).find("button[name=place]").on('click', function() {
         var h = ($('#container').height() - 120), w = ($('#container').width() - 40);
-        var a = $('<div class="weui-mask_transparent"></div><div style="width:' + w + 'px;height:' + h + 'px;" class="mapStyle weui-form-preview"><div class="weui-cell"><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="搜索地图" id="SearchMap"></div></div><div id="allmap"></div><div class="weui-form-preview__ft"><a href="javascript:;" class="weui-form-preview__btn weui-form-preview__btn_primary">确定</a><a href="javascript:;" class="weui-form-preview__btn weui-form-preview__btn_default">取消</a></div></div>');
+        var a = $('<div class="weui-mask_transparent"></div><div style="width:' + w + 'px;height:' + h + 'px;" class="mapStyle weui-form-preview"><div class="weui-cell"><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="输入地址，点击搜索" id="SearchMap"></div><div class="weui-cell__ft"><button class="weui-vcode-btn" id="SearchMapbtn">搜索</button></div></div><div id="allmap"></div><div class="weui-form-preview__ft"><a href="javascript:;" class="weui-form-preview__btn weui-form-preview__btn_primary">确定</a><a href="javascript:;" class="weui-form-preview__btn weui-form-preview__btn_default">取消</a></div></div>');
         a.css({ marginTop: -h / 2, marginLeft: -w / 2 });
 
-        a.find('#allmap').css({ height: h - 96 });
+        a.find('#allmap').css({ height: h - 113 });
         $('#container').append(a);
         a.animate({
             transform: 'perspective(500px) rotateY(0deg)',
@@ -850,6 +850,13 @@ function FindPetFn(page, sendType) {
                 local.search($('#SearchMap').val());
             }
         });
+        $('#SearchMapbtn').on('click', function() {
+            var local = new BMap.LocalSearch(map, {
+                renderOptions: { map: map }
+            });
+            local.search($('#SearchMap').val());
+        });
+        
         var geoc = new BMap.Geocoder();
 
         map.addEventListener("click", function(e) {
