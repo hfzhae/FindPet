@@ -635,7 +635,9 @@ function FindPetFn(page, sendType) {
         fnidpetArr.placeTextES = escape(fnidpetArr.placeText);
         fnidpetArr.imgText = '';
         fnidpetArr.sendType = sendType;
-        fnidpetArr.amount = Amount.value;
+        if (sendType == 0) {
+            fnidpetArr.amount = Amount.value;
+        }
         fnidpetArr.isfrom = getQueryString("isfrom") ? getQueryString("isfrom") : 0
         for (i in fnidpetArr.img) {
             fnidpetArr.imgText += escape(fnidpetArr.img[i].src) + ',';
