@@ -645,7 +645,7 @@ function FindPetFn(page, sendType) {
         getData('setFindpet', function(data) {
             if (data) {
                 if (data.result) {
-                    $.toast('提交成功', 'success', 2000);
+                    $.toast('提交成功<br>如有线索<br>与您联系', 'success', 3000);
                     setTimeout(function() {
                         window.history.go(-1);
                     }, 2000);
