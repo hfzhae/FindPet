@@ -2,3 +2,8 @@
 *.css linguist-language=html
 *.html linguist-language=html
 upload/
+.vscode/
+*.scc
+*.mdb
+*.config
+*.scc
